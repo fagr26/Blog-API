@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', 
     'rest_auth',
     'dj_rest_auth',
+  
     #local
     'posts.apps.PostsConfig',
 
@@ -138,7 +139,7 @@ Email_HOST_USER = 'fagrhesham@yahoo.com'
 Email_HOST = 'smtp.mail.yahoo.com'
 Email_PORT = 587
 Email_USE_TLS = True
-Email_HOST_PASSWORD = "Iphone1198"
+# Email_HOST_PASSWORD = ""
 
 REST_FRAMEWORK = {
 'DEFAULT_PERMISSION_CLASSES': [
@@ -152,5 +153,4 @@ REST_FRAMEWORK = {
 'DEFAULT_PAGINATION_CLASS': 
     'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 1,
-
 }
