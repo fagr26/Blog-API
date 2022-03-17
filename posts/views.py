@@ -22,7 +22,7 @@ class PostList(generics.ListCreateAPIView):
             mail=send_mail(
                 'confirmed',
                 'Here is the message.',
-                'fagrhesham@gmail.com',
+                '',
                 [user.email],
                 fail_silently=False,
             )
