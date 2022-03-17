@@ -13,17 +13,38 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from email.policy import default
 from django.contrib import admin
-from django.urls import include, path 
-from posts.views import  Users
+from django.urls import include, path  , re_path
+from rest_framework.documentation import include_docs_urls
+from drf_yasg.views import get_schema_view 
+from drf_yasg import openapi
 
+# schema_view = get_schema_view(title='Blog API')
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Blog API",
+      description="A Web API for creating and editing blog posts",
+      default_version= 'v1',
+   ),
+   public=True,
+)
 
 urlpatterns = [
+    # swagger
+    re_path(r'^doc(?P<format>\.json|\.yaml)$',
+            schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('doc/', schema_view.with_ui('swagger', cache_timeout=0),
+         name='schema-swagger-ui'), 
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0),
+         name='schema-redoc'),
+
     path('admin/', admin.site.urls),
-    # path('admin/v2/users/',admin.site.urls,Users.as_view()),
     path('api/v1/', include('posts.urls')), 
     path('api-auth/', include('rest_framework.urls')), 
     path('api/v1/dj-rest-auth/', include('dj_rest_auth.urls')), 
+   # path('docs/', include_docs_urls(title=API_TITLE,description=API_DESCRIPTION)), built-in doc. django
+   
 ]
 
  

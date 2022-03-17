@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', 
     'rest_auth',
     'dj_rest_auth',
+    'drf_yasg',
   
     #local
     'posts.apps.PostsConfig',
@@ -153,4 +154,6 @@ REST_FRAMEWORK = {
 'DEFAULT_PAGINATION_CLASS': 
     'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 1,
+
+'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'   
 }
